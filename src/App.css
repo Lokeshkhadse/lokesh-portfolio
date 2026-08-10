@@ -1,0 +1,310 @@
+.font-size{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+/* laptop screen container styling */
+.laptop-screen {
+  position: absolute;
+  /* border, shadow already applied inline via className */
+  background: rgba(0,0,0,0.02);
+  /* ensure stacking above Lottie if needed */
+  z-index: 10;
+}
+
+/* scrolling wrapper - holds duplicated images */
+.scrolling-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* content is two stacked identical images for smooth loop */
+.scrolling-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* animation: translate up by exactly one image height (var --img-height) */
+  animation-name: scroll-website;
+  animation-duration: var(--scroll-duration, 18s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* images fill the screen */
+.scrolling-content img {
+  width: 100%;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none; /* prevent interactions */
+}
+
+/* keyframes translate by exact image height so duplicated image loops seamlessly */
+@keyframes scroll-website {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+
+/* small devices: hide the laptop preview to improve perf / layout */
+@media (max-width: 767px) {
+  .laptop-screen {
+    display: none;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .scrolling-content {
+    animation: none;
+  }
+}
+
+.bg-grid-animated {
+  position: relative;
+  overflow: hidden; /* already present for child, but */
+}
+
+.bg-grid-animated::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+ background-image:
+    linear-gradient(rgba(219, 213, 213, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: rotateX(60deg) rotateZ(45deg);
+  animation: moveGrid 20s linear infinite;
+  filter: blur(0.3px);
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 80%, transparent 100%);
+}
+
+@keyframes moveGrid {
+  from { transform: rotateX(60deg) rotateZ(45deg) translateY(0); }
+  to   { transform: rotateX(60deg) rotateZ(45deg) translateY(-50px); }
+}
+
+
+
+
+/* Sticky container */
+.social-icons {
+  position: fixed;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  border-top:1.5px solid #854CE6;
+  border-right: 1.5px solid #854CE6;
+  border-bottom: 1.5px solid #854CE6;
+  box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 8px 0px; 
+
+}
+
+/* From Uiverse.io by wilsondesouza */ 
+ul {
+  list-style: none;
+}
+
+.example-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.example-2 .icon-content {
+  margin: 0 10px;
+  position: relative;
+  padding: 0.5rem;
+}
+.example-2 .icon-content .tooltip {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translateY(200%);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.example-2 .icon-content:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -50px;
+}
+.example-2 .icon-content a {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #4d4d4d;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover {
+  box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+.example-2 .icon-content a svg {
+  position: relative;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+}
+.example-2 .icon-content a:hover {
+  color: white;
+    border: 2px solid white;
+}
+.example-2 .icon-content a .filled {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #000;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover .filled {
+  height: 100%;
+}
+
+.example-2 .icon-content a[data-social="linkedin"] .filled,
+.example-2 .icon-content a[data-social="linkedin"] ~ .tooltip {
+  background-color: #0274b3;
+}
+
+.example-2 .icon-content a[data-social="github"] .filled,
+.example-2 .icon-content a[data-social="github"] ~ .tooltip {
+  background-color: #24262a;
+}
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5b51db,
+    #b33ab4,
+    #c135b4,
+    #e1306c,
+    #fd1f1f
+  );
+}
+.example-2 .icon-content a[data-social="leetcode"] .filled,
+.example-2 .icon-content a[data-social="leetcode"] ~ .tooltip{
+  background-color: #24262a;
+}
+
+
+
+
+/* On hover apply brand multi-colors */
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(1) {
+  fill: #fff; /* light grey */
+}
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(2) {
+  fill: #fff; /* darker grey */
+}
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(3) {
+  fill: #C98F1B; /* gold */
+}
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(4) {
+  fill: #060605; /* dark */
+}
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(5) {
+  fill: #E7A41F; /* yellow/orange */
+}
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(6) {
+  fill: #fff; /* dark */
+}
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(7) {
+  fill: #EAB03C; /* bright gold */
+}
+.example-2 .icon-content a[data-social="leetcode"]:hover svg path:nth-of-type(8) {
+  fill: #fff; /* dark grey */
+}
+
+@media (max-width: 768px) {
+  .social-icons  {
+     padding: 0px 0px; 
+  }
+
+  .example-2 .icon-content a {
+
+  width: 20px;
+  height: 20px;
+
+}
+
+.example-2 .icon-content a svg {
+
+  width: 10px;
+  height: 10px;
+}
+
+}
+
+
+.bg-glow{
+  border: 0.1px solid #854CE6;
+  box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
+  border-radius: 16px;
+}
+
+.bg-glow-1{
+  border: 1px solid #F2F3F480;
+  border-radius: 12px;
+}
+
+
+.footer-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-wrapper::before,
+.footer-wrapper::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.footer-wrapper::before {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #9f7aea, transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.footer-wrapper::after {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #6b46c1, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+}
+
+
+.brd-card{
+  border: 0.1px solid #854CE6;
+}
