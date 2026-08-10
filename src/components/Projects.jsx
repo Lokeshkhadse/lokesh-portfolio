@@ -1,12 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
 import ProjectCard from './ProjectCards'
 import styled from 'styled-components';
-import heroImg from '../assets/heroImg.JPG'
 // Import local images
 import liquorImg from '../assets/liquor.jpg' // Add your image to assets
 import walletImg from '../assets/wallet.jpg' // Add your image to assets
-import courtImg from '../assets/court.jpg' // Add your image to assets
+import courtImg from '../assets/court.png' // Add your image to assets
 
 
 const Container = styled.div`
