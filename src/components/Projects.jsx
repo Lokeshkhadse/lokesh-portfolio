@@ -6,6 +6,8 @@ import heroImg from '../assets/heroImg.JPG'
 // Import local images
 import liquorImg from '../assets/liquor.jpg' // Add your image to assets
 import walletImg from '../assets/wallet.jpg' // Add your image to assets
+import courtImg from '../assets/court.jpg' // Add your image to assets
+
 
 const Container = styled.div`
     background: linear-gradient(343.07deg, rgba(132, 59, 206, 0.06) 5.71%, rgba(132, 59, 206, 0) 64.83%);
@@ -65,7 +67,7 @@ const Projects = ({openModal,setOpenModal}) => {
                 "Optimized complex MSSQL queries, stored procedures, and database indexing",
                 "Managed thread synchronization to eliminate race conditions and reduce query latency by 50%"
             ],
-            image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop&crop=center",
+            image: courtImg, // Using local image
             tags: ["Java", "Spring Boot", "Microservices", "REST APIs", "RabbitMQ", "MSSQL", "Multi-threading"],
            
         },
